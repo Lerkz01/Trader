@@ -1,0 +1,34 @@
+# Render.com Deployment-Konfiguration (Blueprint).
+# In Render: "New +" -> "Blueprint" -> dieses Repo wählen.
+services:
+  - type: web
+    name: cohen-bot
+    runtime: python
+    plan: free                # Free-Tier; cron-job.org hält ihn über /ping wach
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app:app --host 0.0.0.0 --port $PORT"
+    autoDeploy: true
+    envVars:
+      - key: FINNHUB_API_KEY
+        sync: false           # im Render-Dashboard manuell setzen (geheim)
+      - key: START_CASH
+        value: "10000"
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # KI-Analyst optional:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ANALYST_MODEL
+        value: "claude-opus-4-8"
+
+    # ------------------------------------------------------------------
+    # NUR für bezahlten Starter-Plan (~7$/Mon): persistente Disk, damit die
+    # Datenbank auch REDEPLOYS überlebt. Auf dem FREE-Plan auskommentiert
+    # lassen (sonst schlägt der Deploy fehl). Zum Aktivieren: die 2 Zeilen
+    # unter envVars UND den disk-Block einkommentieren.
+    #   - key: DATA_DIR
+    #     value: "/var/data"
+    # disk:
+    #   name: cohen-data
+    #   mountPath: /var/data
+    #   sizeGB: 1

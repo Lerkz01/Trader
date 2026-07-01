@@ -1,0 +1,108 @@
+:root {
+  --bg: #0b0e14;
+  --panel: #141925;
+  --panel2: #1b2230;
+  --border: #232c3d;
+  --text: #e6ebf2;
+  --muted: #8a94a6;
+  --green: #2ecc71;
+  --red: #ff5d5d;
+  --accent: #4c8dff;
+  --yellow: #ffce54;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 18px;
+}
+
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand h1 { font-size: 20px; margin: 0; letter-spacing: .5px; }
+.brand .sub { color: var(--muted); font-size: 12px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); }
+.dot.on { background: var(--green); box-shadow: 0 0 8px var(--green); }
+.dot.off { background: var(--red); }
+.meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+.badge {
+  background: var(--panel2); border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600;
+}
+.badge.open { color: var(--green); border-color: var(--green); }
+.badge.closed { color: var(--muted); }
+.btn {
+  background: var(--panel2); border: 1px solid var(--border); color: var(--text);
+  padding: 5px 11px; border-radius: 8px; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: border-color .15s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.muted { color: var(--muted); font-size: 12px; }
+
+.kpis {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; margin-bottom: 18px;
+}
+.kpi {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px;
+}
+.kpi .label { color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+.kpi .value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+.kpi .value.green { color: var(--green); }
+.kpi .value.red { color: var(--red); }
+
+.grid {
+  display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px;
+}
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 12px; padding: 16px; margin-bottom: 16px;
+}
+.card h2 { font-size: 14px; margin: 0 0 12px; font-weight: 600; }
+.chart-card { min-height: 220px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; }
+tbody tr:hover { background: var(--panel2); }
+td.green, .green { color: var(--green); }
+td.red, .red { color: var(--red); }
+.pill { padding: 2px 8px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+.pill.long { background: rgba(46,204,113,.15); color: var(--green); }
+.pill.short { background: rgba(255,93,93,.15); color: var(--red); }
+.pill.ai { background: rgba(76,141,255,.15); color: var(--accent); }
+.champ-row { background: rgba(255,206,84,.06); }
+.small { font-size: 11px; }
+.sub-h { font-size: 12px; color: var(--muted); margin: 16px 0 8px; font-weight: 600; }
+.logs .PROMO { color: var(--yellow); }
+
+.regime { display: flex; flex-direction: column; gap: 8px; }
+.regime .row { display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 8px; background: var(--panel2); border-radius: 8px; }
+.trend { font-weight: 700; font-size: 12px; }
+.trend.up { color: var(--green); }
+.trend.down { color: var(--red); }
+.trend.flat { color: var(--muted); }
+
+.logs { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px;
+  max-height: 260px; overflow-y: auto; }
+.logs .line { padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,.03); }
+.logs .lvl { display: inline-block; width: 60px; font-weight: 700; }
+.logs .TRADE { color: var(--accent); }
+.logs .RISK { color: var(--yellow); }
+.logs .ERROR { color: var(--red); }
+.logs .WARN { color: var(--yellow); }
+.logs .INFO { color: var(--muted); }
+
+footer { text-align: center; margin-top: 20px; }
+.empty { color: var(--muted); padding: 14px; text-align: center; }

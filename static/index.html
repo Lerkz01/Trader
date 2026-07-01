@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cohen-Bot · Dashboard</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="dot" id="liveDot"></span>
+      <h1>Cohen-Bot</h1>
+      <span class="sub">Steven-Cohen-Stil · Paper Trading · Live-Daten</span>
+    </div>
+    <div class="meta">
+      <span id="phase" class="badge">–</span>
+      <span id="marketState" class="badge">–</span>
+      <span id="lastCycle" class="muted">–</span>
+      <button id="btnExport" class="btn" title="Zustand als JSON herunterladen (vor einem Redeploy)">💾 Snapshot speichern</button>
+      <button id="btnImport" class="btn" title="Snapshot in einen frisch gestarteten Bot laden">📥 Snapshot laden</button>
+      <input id="importFile" type="file" accept="application/json" style="display:none" />
+    </div>
+  </header>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="grid">
+    <div class="card chart-card">
+      <h2>Equity-Kurve</h2>
+      <canvas id="equityChart" height="120"></canvas>
+    </div>
+    <div class="card">
+      <h2>Markt &amp; Sektoren <span class="muted">(40/30/30-Gate)</span></h2>
+      <div id="regime" class="regime"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Offene Positionen</h2>
+    <table id="positions">
+      <thead><tr>
+        <th>Symbol</th><th>Seite</th><th>Stück</th><th>Einstieg</th><th>Kurs</th>
+        <th>Stop</th><th>Ziel</th><th>R</th><th>U-P&amp;L</th><th>These</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="grid">
+    <div class="card">
+      <h2>Heutige Katalysatoren</h2>
+      <table id="catalysts">
+        <thead><tr><th>Symbol</th><th>Typ</th><th>Detail</th><th>Datum</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Trade-Historie</h2>
+      <table id="trades">
+        <thead><tr><th>Zeit (UTC)</th><th>Aktion</th><th>Symbol</th><th>Stück</th><th>Kurs</th><th>P&amp;L</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>🔬 Analyst-Labor <span class="muted" id="analystCriteria"></span></h2>
+    <table id="books">
+      <thead><tr>
+        <th>Buch</th><th>Typ</th><th>Rendite</th><th>Max DD</th><th>Trades</th>
+        <th>Treffer</th><th>Score</th><th>Tage</th><th>Streak</th><th>Konfiguration</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table>
+    <h3 class="sub-h">Promotions-Historie</h3>
+    <div id="promotions" class="logs"></div>
+  </section>
+
+  <section class="card">
+    <h2>Engine-Log</h2>
+    <div id="logs" class="logs"></div>
+  </section>
+
+  <footer class="muted">
+    Aktualisiert automatisch · Spielgeld, echte Kurse · kein Anlageratschlag
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
